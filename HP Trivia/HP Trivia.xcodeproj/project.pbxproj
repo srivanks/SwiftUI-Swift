@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89676C602B3987F90037D421 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89676C5F2B3987F90037D421 /* Constants.swift */; };
+		89676C622B3994F30037D421 /* Instructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89676C612B3994F30037D421 /* Instructions.swift */; };
+		89676C642B39AA710037D421 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89676C632B39AA710037D421 /* Settings.swift */; };
 		89D1EDDD2B396AB000C1A271 /* HP_TriviaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D1EDDC2B396AB000C1A271 /* HP_TriviaApp.swift */; };
 		89D1EDDF2B396AB000C1A271 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89D1EDDE2B396AB000C1A271 /* ContentView.swift */; };
 		89D1EDE12B396AB100C1A271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89D1EDE02B396AB100C1A271 /* Assets.xcassets */; };
@@ -23,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		89676C5F2B3987F90037D421 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		89676C612B3994F30037D421 /* Instructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instructions.swift; sourceTree = "<group>"; };
+		89676C632B39AA710037D421 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		89D1EDD92B396AB000C1A271 /* HP Trivia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HP Trivia.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89D1EDDC2B396AB000C1A271 /* HP_TriviaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HP_TriviaApp.swift; sourceTree = "<group>"; };
 		89D1EDDE2B396AB000C1A271 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +77,9 @@
 			children = (
 				89D1EDDC2B396AB000C1A271 /* HP_TriviaApp.swift */,
 				89D1EDDE2B396AB000C1A271 /* ContentView.swift */,
+				89676C632B39AA710037D421 /* Settings.swift */,
+				89676C612B3994F30037D421 /* Instructions.swift */,
+				89676C5F2B3987F90037D421 /* Constants.swift */,
 				89D1EDFA2B396B7F00C1A271 /* trivia.json */,
 				89D1EDE02B396AB100C1A271 /* Assets.xcassets */,
 				89D1EDED2B396B7400C1A271 /* deep-in-the-dell.mp3 */,
@@ -175,6 +184,9 @@
 			files = (
 				89D1EDDF2B396AB000C1A271 /* ContentView.swift in Sources */,
 				89D1EDDD2B396AB000C1A271 /* HP_TriviaApp.swift in Sources */,
+				89676C622B3994F30037D421 /* Instructions.swift in Sources */,
+				89676C602B3987F90037D421 /* Constants.swift in Sources */,
+				89676C642B39AA710037D421 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
