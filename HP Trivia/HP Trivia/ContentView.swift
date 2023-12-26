@@ -9,11 +9,16 @@ import SwiftUI
 import AVKit
 
 struct ContentView: View {
+    @EnvironmentObject private var store: Store
+    @EnvironmentObject private var game: Game
+    
     @State private var audioPlayer: AVAudioPlayer!
     @State private var scalePlayButton = false
     @State private var moveBackgoundImage = false
     @State private var animateViewsIn = false
+    @State private var showSettings = false
     @State private var showInstructions = false
+    @State private var playGame = false
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -87,27 +92,33 @@ struct ContentView: View {
                         VStack {
                             if animateViewsIn {
                                 Button("Play") {
-                                    // play
+                                    filterQuestions()
+                                    game.startGame()
+                                    playGame.toggle()
                                 }.font(.largeTitle)
                                     .foregroundColor(.white)
                                     .padding(.vertical, 7)
                                     .padding(.horizontal, 50)
                                     .cornerRadius(7)
                                     .shadow(radius: 5)
-                                    .background(.brown)
+                                    .background(store.books.contains(.active) ? .brown : .gray)
                                     .scaleEffect(scalePlayButton ? 1.2 : 1)
                                     .onAppear {
                                         withAnimation(.easeInOut(duration: 1.3).repeatForever()) {
                                             scalePlayButton.toggle()
                                         }
                                     }.transition(.offset(y: geo.size.height / 3))
+                                    .fullScreenCover(isPresented: $playGame){
+                                        GamePlay()
+                                    }
+                                    .disabled(store.books.contains(.active) ? false : true)
                             }
                         }.animation(.easeOut(duration: 0.7).delay(2), value: animateViewsIn)
                         Spacer()
                         VStack {
                             if animateViewsIn {
                                 Button {
-                                    // play
+                                    animateViewsIn.toggle()
                                 } label:  {
                                     Image(systemName: "gearshape.fill")
                                         .font(.largeTitle)
@@ -115,10 +126,23 @@ struct ContentView: View {
                                         .shadow(radius: 7)
                                 }
                                 .transition(.offset(x: geo.size.width / 4))
+                                    .sheet(isPresented: $showSettings){
+                                        Settings().environmentObject(store).environmentObject(game)
+                                    }
                             }
                         }.animation(.easeOut(duration: 0.7).delay(2.7), value: animateViewsIn)
                         Spacer()
                     }.frame(width: geo.size.width)
+                    
+                    VStack {
+                        if animateViewsIn {
+                            if store.books.contains(.active) == false {
+                                Text("No questions available. Go to Settings")
+                                    .multilineTextAlignment(.center)
+                                    .transition(.opacity)
+                            }
+                        }
+                    }.animation(.easeInOut.delay(3), value: animateViewsIn)
                     Spacer()
                 }
             }.frame(width: geo.size.width, height: geo.size.height)
@@ -136,8 +160,19 @@ struct ContentView: View {
         audioPlayer.numberOfLoops = -1
         audioPlayer.play()
     }
+    
+    private func filterQuestions() {
+        var books: [Int] = []
+        for (index, status) in store.books.enumerated() {
+            if status == .active {
+                books.append(index + 1)
+            }
+        }
+        game.filterQuestions(to: books)
+        game.newQuestions()
+    }
 }
 
 #Preview {
-    ContentView()
+    ContentView().environmentObject(Store()).environmentObject(Game())
 }
